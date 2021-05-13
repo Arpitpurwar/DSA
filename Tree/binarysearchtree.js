@@ -51,6 +51,45 @@ class BSTTree{
         }
        
     }
+
+   traverseDST(){
+      let preOrderValues = [],postOrderValues = [],inOrderValues = [];
+      
+        const preOrderStyle = (node) => {
+            if(!node) return;
+            preOrderValues.push(node.value);
+            if(node.left) preOrderStyle(node.left);
+            if(node.right) preOrderStyle(node.right);
+            
+            return preOrderValues
+        }
+        const postOrderStyle = (node) =>{
+            if(!node) return;
+            
+            if(node.left) postOrderStyle(node.left);
+            if(node.right) postOrderStyle(node.right);
+            postOrderValues.push(node.value);
+            
+            return postOrderValues
+        } 
+        const inOrderStyle = (node) => {
+            if(!node) return;
+          
+            if(node.left) inOrderStyle(node.left);
+            inOrderValues.push(node.value);
+            if(node.right) inOrderStyle(node.right);
+            
+            return inOrderValues
+        }
+
+
+       return {
+           preOrder : preOrderStyle(this.root),
+           postOrder : postOrderStyle(this.root),
+           inOrder : inOrderStyle(this.root)
+       }
+   }
+
 }
 
 let tree = new BSTTree();
@@ -65,4 +104,8 @@ let tree = new BSTTree();
     tree.insert(107);
     tree.insert(97);
     tree.insert(94);
+    const { preOrder, inOrder, postOrder} =tree.traverseDST();
+    preOrder
+    inOrder
+    postOrder
 })(tree)
