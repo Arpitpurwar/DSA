@@ -90,6 +90,27 @@ class BSTTree{
        }
    }
 
+   find(value){
+    let currentNode = this.root;
+    if(!currentNode) return null;
+
+    function findNode(node){
+        if(!node){
+            return 'Not Exist';
+        }
+        if(node.value === value){
+            return node;
+        }else if(node.value < value){
+            return findNode(node.right);
+        }else if(node.value > value){
+            return findNode(node.left);
+        }
+    }
+
+    return findNode(currentNode);
+
+   }
+
 }
 
 let tree = new BSTTree();
@@ -104,8 +125,10 @@ let tree = new BSTTree();
     tree.insert(107);
     tree.insert(97);
     tree.insert(94);
+   // console.log(JSON.stringify(tree));
     const { preOrder, inOrder, postOrder} =tree.traverseDST();
     preOrder
     inOrder
     postOrder
+    console.log(tree.find(10));
 })(tree)
