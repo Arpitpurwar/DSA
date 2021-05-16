@@ -76,6 +76,50 @@ class LinkedList{
         return arr;
     }
 
+    reverse(){
+        
+        if(!this.head.address)
+        {
+            return this.head;
+        }       
+        let reversedNodeHead = new LLNode(this.head.data);
+        let currentHead = this.head.address;
+        this.tail = reversedNodeHead;
+
+        while(currentHead!== null){
+            let newNode;
+            newNode = currentHead;
+            currentHead = currentHead.address;
+            newNode.address = reversedNodeHead;
+            reversedNodeHead = newNode;
+        };
+
+        this.head = reversedNodeHead;
+        return this.printList()
+    }
+
+    betterReverse(){
+        if(!this.head.address){
+            return this.head;
+        }
+
+        let first = this.head;
+        this.tail = this.head;
+        let second = first.address;
+
+        first.address = null;
+
+        while(second){
+            let temp = second.address;
+            second.address = first;
+            first = second;
+            second = temp;
+        }
+     this.head = first;
+ 
+
+       return  this.printList();
+    }
 }
 
 let node = new LinkedList();
@@ -88,7 +132,12 @@ let node = new LinkedList();
     n.prepend(1);
     n.append(6);
     n.insert(2,10);
-    n.printList()
+    n.printList();
+    console.log(n.reverse());
+    console.log(n);
+    console.log(n.betterReverse());
+    console.log(n);
     
 
 })(node)
+    
