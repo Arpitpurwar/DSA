@@ -1,11 +1,12 @@
 
+let index = 0;
 const fabWithRecursion = (n) =>{
+    index++
    if(n < 2){
        return n
    }
-    console.log(n);
-   return fabWithRecursion(n-1)+fabWithRecursion(n-2);
-
+  
+   return fabWithRecursion(n-1) + fabWithRecursion(n-2);
     
 }
 
@@ -18,13 +19,36 @@ for(let i =2; i <= n; i++){
 }
    return arr[n];
 }
+let fastIndex = 0;
+const fabWithMemoRecursion = () => {
+    let cache = {};
+    return function fib(n){
+        fastIndex++;
+        if(n in cache){
+            return cache[n];
+        }
+        else{
+            if(n< 2){
+                return n;
+            }else{
+                cache[n] = fib(n-1) + fib(n-2);
+                return cache[n];
+            }
 
+        }
+
+    }
+
+}
 
 
 
 
 (function(){
-    console.log(fabWithRecursion(6));
+    console.log(fabWithRecursion(10));
+    let memo = fabWithMemoRecursion()
+    console.log(memo(10));
     console.log(fabWithIterative(8));
+
 
 })()
