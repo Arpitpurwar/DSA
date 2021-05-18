@@ -111,6 +111,29 @@ class BSTTree{
 
    }
 
+   traverseBST(){
+       let root = this.root;
+       let queue = [root];
+        let arr = [];
+       while(queue.length > 0){
+           let currentNode = queue.shift();
+            arr.push(currentNode.value);
+            if(currentNode.left) queue.push(currentNode.left);
+            if(currentNode.right) queue.push(currentNode.right);
+       }
+
+     return arr;
+   }
+
+   traverseBSTRecursive(){
+
+    let result = [];
+        function findNode(node){
+
+        }
+        findNode(this.root);
+   }
+
 }
 
 let tree = new BSTTree();
@@ -131,4 +154,7 @@ let tree = new BSTTree();
     inOrder
     postOrder
     console.log(tree.find(10));
+    tree.traverseBST();
+
+    tree.traverseBSTRecursive()
 })(tree)
