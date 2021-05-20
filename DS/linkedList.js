@@ -120,6 +120,40 @@ class LinkedList{
 
        return  this.printList();
     }
+
+    detectLoop(){
+        let h = this.head;
+      let set = new Set();
+
+      while(h){
+            if(set.has(h)) {
+                return true;
+            }
+            
+            set.add(h);
+            h = h.next;
+
+      }
+
+      return false;
+
+    }
+
+    betterDetectLoop(){
+        let h = this.head;
+        let temp = new LLNode();
+        while(h){
+            if(h.address == null){
+                return false;
+            }
+            if(h.address == temp){
+                return true;
+            }
+            let next = h.address;
+            h.address = temp;
+            h = next;
+        }
+    }
 }
 
 let node = new LinkedList();
@@ -137,6 +171,8 @@ let node = new LinkedList();
     console.log(n);
     console.log(n.betterReverse());
     console.log(n);
+    console.log(n.detectLoop());
+    console.log(n.betterDetectLoop());
     
 
 })(node)
